@@ -187,3 +187,4 @@ def explain_moment(request: MomentRequest) -> dict[str, Any]:
     except Exception as error:
         logger.exception("Moment explanation failed for video: %s", active_video_id)
         raise HTTPException(status_code=500, detail=str(error)) from error
+# app.py
