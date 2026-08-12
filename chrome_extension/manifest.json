@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Video Summarizer",
+  "version": "0.1.0",
+  "description": "Understand and explore the YouTube video you are watching.",
+  "permissions": ["activeTab", "tabs", "sidePanel", "scripting"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtu.be/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "action": {
+    "default_title": "Open Video Summarizer"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}

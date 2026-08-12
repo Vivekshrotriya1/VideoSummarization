@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Summarizer</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">&#9654;</div>
+        <div>
+          <p class="eyebrow">YOUR VIDEO COPILOT</p>
+          <h1>Video Summarizer</h1>
+        </div>
+      </header>
+
+      <section class="video-card" aria-label="Current video">
+        <p class="card-label">CURRENT VIDEO</p>
+        <p id="video-status">Open a YouTube video to begin.</p>
+      </section>
+
+      <button id="analyze-button" class="primary-button" type="button">
+        Analyze current video
+      </button>
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <section id="question-section" class="workspace" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="card-label">ASK & EXPLORE</p>
+            <h2>What do you want to know?</h2>
+          </div>
+          <span class="quota-note">5 AI requests/video</span>
+        </div>
+        <label for="question">Ask a question about this video</label>
+        <textarea id="question" rows="4" placeholder="For example: What are the key takeaways?"></textarea>
+        <p class="input-hint">Press Ctrl + Enter to send</p>
+        <div class="action-grid">
+          <button id="ask-button" class="primary-button" type="button">Ask question</button>
+          <button id="explain-button" class="secondary-button" type="button">Explain this moment</button>
+        </div>
+      </section>
+
+      <section id="answer-section" class="conversation" hidden>
+        <div class="conversation-heading">
+          <div>
+            <p class="card-label">YOUR NOTES</p>
+            <h2>Conversation</h2>
+          </div>
+          <button id="clear-history-button" class="text-button" type="button">Clear</button>
+        </div>
+        <div id="chat-history"></div>
+      </section>
+    </main>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
