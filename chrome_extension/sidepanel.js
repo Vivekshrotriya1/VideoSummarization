@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+// Temporary local development backend.
+const API_BASE_URL = "http://localhost:8000";
 
 const analyzeButton = document.querySelector("#analyze-button");
 const askButton = document.querySelector("#ask-button");
