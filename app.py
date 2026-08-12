@@ -1,5 +1,6 @@
 """FastAPI backend for Video Summarizer."""
 
+import logging
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
@@ -10,6 +11,7 @@ from pydantic import BaseModel, Field
 from rag_service import answer_question, create_video_vector_store, explain_documents
 
 app = FastAPI(title="Video Summarizer API", version="0.1.0")
+logger = logging.getLogger(__name__)
 
 # The extension runs in a different browser origin, so it needs CORS.
 # Restrict this to the extension's chrome-extension:// ID before deployment.
@@ -115,6 +117,7 @@ def analyze_video(request: AnalyzeRequest) -> dict[str, str | int]:
             "chunk_count": vector_store.index.ntotal,
         }
     except Exception as error:
+        logger.exception("Video analysis failed for URL: %s", request.video_url)
         raise HTTPException(status_code=400, detail=str(error)) from error
 
 
@@ -140,6 +143,7 @@ def ask_question(request: AskRequest) -> dict[str, Any]:
         record_question()
         return result
     except Exception as error:
+        logger.exception("Question answering failed for video: %s", active_video_id)
         raise HTTPException(status_code=500, detail=str(error)) from error
 
 
@@ -181,4 +185,5 @@ def explain_moment(request: MomentRequest) -> dict[str, Any]:
         record_question()
         return result
     except Exception as error:
+        logger.exception("Moment explanation failed for video: %s", active_video_id)
         raise HTTPException(status_code=500, detail=str(error)) from error
